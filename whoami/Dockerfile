@@ -11,7 +11,7 @@ COPY ["whoami/whoami.csproj", "whoami/"]
 RUN dotnet restore "whoami/whoami.csproj"
 COPY . .
 WORKDIR "/src/whoami"
-RUN dotnet build "whoami.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "whoami.csproj" -c $BUILD_CONFIGURATION -o /app/build 
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
