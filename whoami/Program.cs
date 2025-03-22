@@ -23,4 +23,13 @@ app.MapGet("/", async (HttpContext context, IHostEnvironment environment) =>
     await context.Response.WriteAsync(message);
 });
 
+app.MapGet("config", ([FromServices] IConfiguration configuration) =>
+{
+    string header = configuration.GetValue<string>("SiteSettings:Header");
+    string title = configuration.GetValue<string>("SiteSettings:Title");
+    string color = configuration.GetValue<string>("SiteSettings:BackgroundColor");
+    
+    return Results.Ok(new { header = header, title = title, color = color });
+});
+
 app.Run();
